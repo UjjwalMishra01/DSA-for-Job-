@@ -1,0 +1,24 @@
+
+class Solution {
+        public static boolean checkIfPangram(String sentence) {
+        {
+        int count = 0;
+        for (char i = 'a'; i <= 'z'; i++) {
+            innerLoop:
+            for (int j = 0; j < sentence.length(); j++) {
+                char ch = sentence.charAt(j);
+                if (ch == i) {
+                    count++;
+                    break innerLoop;
+                }
+            }
+        }
+
+        if (count == 26) {
+            return true;
+        }
+
+        return false;
+    }
+}
+}   
