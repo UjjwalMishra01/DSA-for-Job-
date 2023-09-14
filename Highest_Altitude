@@ -1,0 +1,26 @@
+https://leetcode.com/problems/find-the-highest-altitude/submissions/
+//here num is used for both storing size of array as well as storing highest altitude as well to save space.
+ public static int largestAltitude(int[] gain) {
+        int num = gain.length;
+        int[] alt = new int[num+1];
+        alt[0] = 0;
+        for(int i =0; i<gain.length;i++)
+        {
+          alt[i+1]= gain[i]+alt[i];
+        }
+        num =0;
+        for(int i=0; i<alt.length-1;i++)
+        {
+
+
+            if(num<alt[i+1])
+            {
+                num = alt[i+1];
+
+            }
+
+        }
+        return num;
+    }
+}
+
