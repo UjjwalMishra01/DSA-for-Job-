@@ -1,0 +1,36 @@
+https://leetcode.com/problems/set-matrix-zeroes/
+Given an m x n integer matrix matrix, if an element is 0, set its entire row and column to 0's.
+
+
+
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        boolean[] rows = new boolean[matrix.length];
+        boolean[] cols = new boolean[matrix[0].length];
+
+        for (int row = 0; row < matrix.length; row++) {
+            for (int col = 0; col < matrix[row].length; col++) {
+                if (matrix[row][col] == 0) {
+                    rows[row] = true;
+                    cols[col] = true;
+                }
+            }
+        }
+
+        for (int row = 0; row < matrix.length; row++) {
+            if (rows[row]) {
+                for (int col = 0; col < matrix[row].length; col++) {
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+
+        for (int col = 0; col < matrix[0].length; col++) {
+            if (cols[col]) {
+                for (int row = 0; row < matrix.length; row++) {
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+    }
+}
