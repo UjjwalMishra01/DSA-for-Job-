@@ -10,15 +10,15 @@ Inside each folder, you will find:<br/>
 - Solution code in the programming language used (mostly Java/Python).
  
 ## 📝 Problem Categories:<br/>
-Array<br/>
-String<br/>
-Linked List<br/>
-Binary Tree<br/>
-Dynamic Programming<br/>
-Greedy Algorithm<br/>
-Graph<br/>
-Backtracking<br/>
-And many more...<br/>
+- Array<br/>
+- String<br/>
+- Linked List<br/>
+- Binary Tree<br/>
+- Dynamic Programming<br/>
+- Greedy Algorithm<br/>
+- Graph<br/>
+- Backtracking<br/>
+*And many more...*<br/>
 
 ## 🌟 Features:
 Updated regularly with more solved problems.<br/>
