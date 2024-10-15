@@ -1,4 +1,4 @@
-https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+package src;
 
 public class oddvalueMatrix {
     public static void main(String[] args) {
