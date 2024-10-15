@@ -18,7 +18,7 @@ Inside each folder, you will find:<br/>
 - Greedy Algorithm<br/>
 - Graph<br/>
 - Backtracking<br/>
-* And many more...<br/>
+** And many more...**<br/>
 
 ## 🌟 Features:
 Updated regularly with more solved problems.<br/>
