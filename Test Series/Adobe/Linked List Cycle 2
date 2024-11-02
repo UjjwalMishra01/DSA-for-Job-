@@ -1,0 +1,65 @@
+Question:-
+Problem statement
+You are given a singly linked list that may or may not contain a cycle. You are supposed to return the node where the cycle begins, if a cycle exists, else return 'NULL'.
+A cycle occurs when a node's next pointer returns to a previous node in the list.
+
+Sample Input 1 :
+1 2 3 4 -1
+1
+
+
+Sample Output 1 :
+1
+
+Link:- https://www.naukri.com/code360/test-series/adobe-online-assessment-test-series/offering/2422326/problem/9967?leftProblemTabValue=PROBLEM&queryParamsHandling=merge&leftPanelTabValue=PROBLEM&customSource=studio_nav
+
+Code:
+
+import java.util.HashMap;
+
+/****************************************************************
+ Following is the class structure of the Node class:
+
+ class Node {
+     public int data;
+     public Node next;
+
+     Node() {
+         this.data = 0;
+         this.next = null;
+     }
+     Node(int data) {
+         this.data = data;
+         this.next = null;
+     }
+     Node(int data, Node next) {
+         this.data = data;
+         this.next = next;
+     }
+ }
+ *****************************************************************/
+
+public class Solution {
+    public static Node firstNode(Node head) {
+        // Create a HashMap to store visited nodes
+        HashMap<Node, Boolean> map = new HashMap<>();
+        
+        // Traverse the linked list
+        while (head != null) {
+            // Check if the current node is already in the map
+            if (map.containsKey(head)) {
+                // Cycle detected, return the starting node
+                return head;
+            } else {
+                // Mark the current node as visited
+                map.put(head, true);
+            }
+            
+            // Move to the next node
+            head = head.next;
+        }
+        
+        // If no cycle is found, return null
+        return null;
+    }
+}
