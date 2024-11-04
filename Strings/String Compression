@@ -1,0 +1,39 @@
+Link:- https://leetcode.com/problems/string-compression-iii/description/?envType=daily-question&envId=2024-11-04
+
+
+Code:-
+
+class Solution {
+    public String compressedString(String word) {
+        if (word == null || word.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder comp = new StringBuilder();
+        char prev_char = word.charAt(0);
+        int count = 1;
+
+        for (int i = 1; i < word.length(); i++) {
+            if (word.charAt(i) == prev_char) {
+                count++;
+            } else {
+                appendCompressedSegment(comp, prev_char, count);
+                prev_char = word.charAt(i);
+                count = 1;
+            }
+        }
+
+        // Append the last group
+        appendCompressedSegment(comp, prev_char, count);
+
+        return comp.toString();
+    }
+
+    private void appendCompressedSegment(StringBuilder comp, char c, int count) {
+        while (count > 9) {
+            comp.append(9).append(c);
+            count -= 9;
+        }
+        comp.append(count).append(c);
+    }
+}
