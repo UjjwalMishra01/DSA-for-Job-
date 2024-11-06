@@ -1,0 +1,50 @@
+Link:- https://leetcode.com/problems/reorder-list/description/?source=submission-ac
+
+Code:- 
+
+import java.util.Stack;
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public void reorderList(ListNode head) {
+        if (head == null || head.next == null) {
+            return; // Edge case: empty or single-node list
+        }
+
+        // Push all nodes into a stack
+        Stack<ListNode> stack = new Stack<>();
+        ListNode current = head;
+        while (current != null) {
+            stack.push(current);
+            current = current.next;
+        }
+
+        int n = stack.size();
+        ListNode left = head;
+
+        // Reorder the list by interleaving nodes from the start and end
+        for (int i = 0; i < n / 2; i++) {
+            ListNode right = stack.pop(); // Get the node from the end
+
+            // Connect the left node to the right node
+            ListNode next = left.next; // Store the next node of the left
+            left.next = right; // Link left to right
+            right.next = next; // Link right to the next of left
+            left = next; // Move left pointer to the next node
+        }
+
+        // End the list properly to avoid cycles
+        if (left != null) {
+            left.next = null;
+        }
+    }
+}
