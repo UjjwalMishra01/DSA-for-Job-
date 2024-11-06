@@ -1,0 +1,56 @@
+Link:- https://leetcode.com/problems/flatten-binary-tree-to-linked-list/description/?envType=problem-list-v2&envId=stack
+
+Code:-
+
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+
+class Solution {
+     Stack<TreeNode> stack = new Stack<>();
+
+    public void preorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        stack.push(root);
+
+        preorderTraversal(root.left);
+        preorderTraversal(root.right);
+    }
+
+
+    public void flatten(TreeNode root) {
+        preorderTraversal(root);
+        if(stack.size() != 1){
+        
+        List<TreeNode> list = new ArrayList<>(stack);
+        // Since stackwill be storing elements in reverse order
+        Collections.reverse(list);
+        stack.clear();
+        stack.addAll(list);
+        // reconstruct the binary tree
+    
+       while (!stack.isEmpty()) {
+            TreeNode nextNode = stack.pop(); 
+    
+              root.left = null;  
+              root.right = nextNode; 
+              root = nextNode; 
+} 
+        }
+  }
+}
