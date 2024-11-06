@@ -1,0 +1,48 @@
+Link:- https://leetcode.com/problems/find-if-array-can-be-sorted/
+
+Code:-
+
+class Solution {
+    // Method to check if the array is already sorted
+    public boolean isSorted(int[] nums) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] > nums[i + 1]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Method to swap elements in the array at given indices
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }
+
+    public boolean canSortArray(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] > nums[j]) {
+                    int csbi = Integer.bitCount(nums[i]);
+                    int csbj = Integer.bitCount(nums[j]);
+
+                    // Check if the number of set bits is the same
+                    // csbi represents count set bits for nums[i]
+                    // csbj represents count set bits for nums[j]
+                    if (csbi != csbj) {
+                        return false; // Can't swap if the set bit counts differ
+                    } else {
+                        // Swap the elements
+                        swap(nums, i, j);
+                    }
+                }
+            }
+        }
+
+        // Check if the array is sorted after possible swaps
+        return isSorted(nums);
+    }
+
+   
+}
