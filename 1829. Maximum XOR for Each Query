@@ -1,0 +1,27 @@
+Link:- https://leetcode.com/problems/maximum-xor-for-each-query/
+
+Code:-
+
+class Solution{
+public int[] getMaximumXor(int[] nums, int maximumBit) {
+    int n = nums.length;
+    int[] k = new int[n];
+    int currentXor = 0;
+    // We will be performing bitwise left shift operation instead of Math.pow() to calculate
+    // power since it is computationally faster (although both takes O(1) time but Math.pow
+    // has internally more steps.
+    int maxPossibleValue = (1 << maximumBit) - 1;
+    
+    // Compute the XOR of all elements in nums
+    for (int num : nums) {
+        currentXor ^= num;
+    }
+
+    // Find maximum XOR for each query
+    for (int i = 0; i < n; i++) {
+        k[i] = maxPossibleValue ^ currentXor;
+        currentXor ^= nums[n - 1 - i]; // Remove the last element from currentXor
+    }
+    return k;
+}
+}
