@@ -1,0 +1,42 @@
+Link:- https://leetcode.com/problems/minimum-array-end/
+
+Code:- 
+
+class Solution {
+    public long minEnd(int n, int x) {
+        // Create bit arrays to represent x and n in binary form
+        int[] xBit = new int[64];
+        int[] nBit = new int[64];
+        
+        // Decrement n by 1 since we need n-1 elements in addition to the first element x
+        n--;
+        
+        // Populate xBit array with bits of x
+        for (int i = 0; i < 32; i++) {
+            xBit[i] = (x >> i) & 1;
+        }
+
+        // Populate nBit array with bits of n
+        for (int i = 0; i < 32; i++) {
+            nBit[i] = (n >> i) & 1;
+        }
+
+        // Replace unset bits of x with bits from n
+        int i = 0, j = 0;
+        while (i < 64) {
+            if (xBit[i] == 1) {
+                i++;
+                continue;
+            }
+            xBit[i++] = nBit[j++];
+        }
+
+        // Calculate the minimum possible value of the last element
+        long ans = 0;
+        for (int k = 0; k < 64; k++) {
+            ans += (long) xBit[k] * (1L << k);
+        }
+
+        return ans;
+    }
+}
