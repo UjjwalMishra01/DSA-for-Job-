@@ -1,0 +1,21 @@
+Link_:- https://leetcode.com/problems/adding-spaces-to-a-string/description/
+
+Code:-
+
+class Solution {
+    public String addSpaces(String s, int[] spaces) {
+       StringBuilder answer = new StringBuilder();
+       int i=0;
+       int j=0;
+
+       while(i<s.length()){
+        if(j<spaces.length && i == spaces[j]){
+            answer.append(" ");
+            j++;
+        }
+        answer.append(s.charAt(i));
+        i++;
+       } 
+       return answer.toString();
+    }
+}
