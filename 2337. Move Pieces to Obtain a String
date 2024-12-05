@@ -1,0 +1,66 @@
+Link:- https://leetcode.com/problems/move-pieces-to-obtain-a-string/description/?envType=daily-question&envId=2024-12-05
+
+Code:- 
+
+class Solution {
+    public boolean canChange(String start, String target) {
+        if (start.length() != target.length()) {
+            return false; // Edge case: different lengths
+        }
+
+        int startIndex = 0, targetIndex = 0;
+
+        while (startIndex < start.length() && targetIndex < target.length()) {
+            // Skip underscores in both strings
+            while (startIndex < start.length() && start.charAt(startIndex) == '_') {
+                startIndex++;
+            }
+            while (targetIndex < target.length() && target.charAt(targetIndex) == '_') {
+                targetIndex++;
+            }
+
+            // If both indices are out of bounds, break the loop
+            if (startIndex == start.length() && targetIndex == target.length()) {
+                break;
+            }
+
+            // If one is out of bounds but the other isn't, return false
+            if (startIndex == start.length() || targetIndex == target.length()) {
+                return false;
+            }
+
+            // Check if the characters match
+            if (start.charAt(startIndex) != target.charAt(targetIndex)) {
+                return false;
+            }
+
+            // Positional constraints for 'L' and 'R'
+            if (start.charAt(startIndex) == 'L' && targetIndex > startIndex) {
+                return false; // 'L' cannot move right
+            }
+            if (start.charAt(startIndex) == 'R' && targetIndex < startIndex) {
+                return false; // 'R' cannot move left
+            }
+
+            // Move to the next character
+            startIndex++;
+            targetIndex++;
+        }
+
+        // Ensure any remaining characters are underscores
+        while (startIndex < start.length()) {
+            if (start.charAt(startIndex) != '_') {
+                return false;
+            }
+            startIndex++;
+        }
+        while (targetIndex < target.length()) {
+            if (target.charAt(targetIndex) != '_') {
+                return false;
+            }
+            targetIndex++;
+        }
+
+        return true;
+    }
+}
