@@ -1,0 +1,43 @@
+Link:- https://leetcode.com/problems/find-longest-special-substring-that-occurs-thrice-i/
+
+Code:-
+
+import java.util.HashMap;
+
+class Solution {
+    public int maximumLength(String s) {
+        HashMap<String, Integer> freqMap = new HashMap<>();
+        int n = s.length();
+
+        // Step 1: Generate all possible substrings
+        for (int i = 0; i < n; i++) {
+            StringBuilder currentSubstring = new StringBuilder();
+            for (int j = i; j < n; j++) {
+                currentSubstring.append(s.charAt(j));
+                String sub = currentSubstring.toString();
+
+                // Step 2: Count occurrence of each substring
+                freqMap.put(sub, freqMap.getOrDefault(sub, 0) + 1);
+            }
+        }
+
+        // Step 3: Find the longest special substring with occurrence >= 3
+        int maxLength = -1;
+        for (String key : freqMap.keySet()) {
+            if (isSpecial(key) && freqMap.get(key) >= 3) {
+                maxLength = Math.max(maxLength, key.length());
+            }
+        }
+
+        return maxLength;
+    }
+
+    // Helper function to check if a substring is "special"
+    private boolean isSpecial(String s) {
+        char first = s.charAt(0);
+        for (char c : s.toCharArray()) {
+            if (c != first) return false;
+        }
+        return true;
+    }
+}
