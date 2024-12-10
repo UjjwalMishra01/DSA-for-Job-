@@ -1,0 +1,32 @@
+Link:- https://leetcode.com/problems/permutations/description/
+
+Code:-
+
+class Solution {
+
+    public void solve(List<List<Integer>> answer, List<Integer> currList, int[] nums) {
+        // Base case: if currList size is equal to nums length, we have a valid permutation
+        if (currList.size() == nums.length) {
+            answer.add(new ArrayList<>(currList));
+            return;
+        }
+        
+        // Try each number in the nums array
+        for (int i = 0; i < nums.length; i++) {
+            // Skip if the number is already in the current list
+            if (currList.contains(nums[i])) {
+                continue;
+            }
+            // Choose the current number and explore further
+            currList.add(nums[i]);
+            solve(answer, currList, nums); // Recur to add the next number
+            currList.remove(currList.size() - 1); // Backtrack
+        }
+    }
+
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> answer = new ArrayList<>();
+        solve(answer, new ArrayList<>(), nums);
+        return answer;
+    }
+}
