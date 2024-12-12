@@ -1,0 +1,34 @@
+Link:- https://leetcode.com/problems/take-gifts-from-the-richest-pile/solutions/6137962/java-solution-using-maxheap-o-nlogn/
+
+Code:-
+
+import java.util.*;
+
+class Solution {
+    public long pickGifts(int[] gifts, int k) {
+        // Create a Max-Heap using PriorityQueue
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+
+        // Add all gift values to the Max-Heap
+        for (int gift : gifts) {
+            maxHeap.add(gift);
+        }
+
+        // Perform k operations
+        while (k > 0 && !maxHeap.isEmpty()) {
+            // Get the maximum value from the heap
+            int temp = maxHeap.poll(); 
+            int rootValue = (int) Math.sqrt(temp); // Calculate the square root (floored)
+            maxHeap.add(rootValue); // Add the reduced value back to the heap
+            k--;
+        }
+
+        // Calculate the sum of all remaining values in the heap
+        long sum = 0;
+        while (!maxHeap.isEmpty()) {
+            sum += maxHeap.poll();
+        }
+
+        return sum;
+    }
+}
