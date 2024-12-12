@@ -1,0 +1,7 @@
+Link:- https://leetcode.com/problems/not-boring-movies/?envType=study-plan-v2&envId=top-sql-50
+
+Code:- 
+
+Select id, movie,description,rating from Cinema 
+where description !="boring" and id%2!=0 
+ORDER By rating DESC;
