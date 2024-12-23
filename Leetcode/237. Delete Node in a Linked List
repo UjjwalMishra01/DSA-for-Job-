@@ -1,0 +1,10 @@
+Link:- https://leetcode.com/problems/delete-node-in-a-linked-list/solutions/6177978/java-solution-swapping-in-linkedlist-by-f8yof/
+
+Code:- 
+
+class Solution {
+    public void deleteNode(ListNode node) {
+       node.val = node.next.val;
+       node.next = node.next.next;
+    }
+}
