@@ -27,7 +27,7 @@ Easy solutions with optimized and well-strucutred code<br/>
 
 ## 🚀 Getting Started
 You can clone this repository and explore the solutions:<br/>
-git clone https://github.com/ujjwalmishra01/DSA-for-Job.git<br/>
+git clone https://github.com/UjjwalMishra01/DSA-for-Job-.git<br/>
 
 Navigate to the specific folder and open the files to review the solution.<br/>
 
